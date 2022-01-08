@@ -11,16 +11,14 @@ namespace SushiSite.Controllers
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
-        UserManager<User> _userManager;
-        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
+        UserManager<IdentityUser> _userManager;
+        public RolesController(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
         }
-        public IActionResult Index()
-        {
-            return View(_roleManager.Roles.ToList());
-        }
+        public IActionResult Index() => View(_roleManager.Roles.ToList());
+
         public IActionResult Create() => View();
         [HttpPost]
         public async Task<IActionResult> Create(string name)
@@ -42,6 +40,7 @@ namespace SushiSite.Controllers
             }
             return View(name);
         }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
@@ -52,11 +51,13 @@ namespace SushiSite.Controllers
             }
             return RedirectToAction("Index");
         }
-        public IActionResult UserList() => View(_userManager.Users.ToList());
+
+        public IActionResult UserList() => View(_userManager.Users.ToList().FirstOrDefault());
+
         public async Task<IActionResult> Edit(string userId)
         {
             // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
+            IdentityUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
                 // получем список ролей пользователя
@@ -78,7 +79,7 @@ namespace SushiSite.Controllers
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {
             // получаем пользователя
-            User user = await _userManager.FindByIdAsync(userId);
+            IdentityUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
                 // получем список ролей пользователя
