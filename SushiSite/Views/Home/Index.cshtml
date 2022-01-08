@@ -5,9 +5,22 @@
 }
 
 <div style="margin-top: 100px;">
-    @if(Model.Any())
+    @if (Model.Any())
     {
-        
+        @foreach (var food in Model)
+        {
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                @if (food.Category != null)
+                {
+                   <div class="card-header">@food.Category.Name</div>
+
+                }
+                <div class="card-body">
+                    <h4 class="card-title">@food.Title</h4>
+                    <p class="card-text">@food.Description</p>
+                </div>
+            </div>
+        }
     }
     else
     {
