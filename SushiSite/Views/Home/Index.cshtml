@@ -1,8 +1,17 @@
-﻿@{
+﻿@model IEnumerable<SushiSite.Models.Food>;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center" style="margin-top: 100px;">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="margin-top: 100px;">
+    @if(Model.Any())
+    {
+        
+    }
+    else
+    {
+        <h1>List is empty!</h1>
+        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2ZlZWRpbmctY2F0LmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6ODI4fX19" />
+    }
 </div>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SushiSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,5 +13,8 @@ namespace SushiSite.Data
             : base(options)
         {
         }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Food> Foods { get; set; }
+        public DbSet<Item> CartItems { get; set; }
     }
 }
