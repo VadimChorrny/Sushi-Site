@@ -8,6 +8,7 @@
         public int Price { get; set; }
         public double Weight { get; set; }
         public int Amount { get; set; }
+        public byte[] Image { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
     }
