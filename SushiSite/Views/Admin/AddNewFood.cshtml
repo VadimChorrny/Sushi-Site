@@ -35,10 +35,10 @@
             <input asp-for="Food.Amount" class="form-control col-8">
             <span asp-validation-for="Food.Amount" class="offset-4 text-danger"></span>
         </div>
-        <div class="form-group row">
+         <div class="form-group row">
             <label asp-for="Food.Image" class="col-4"></label>
-            <input asp-for="Food.Image" name="Avatar" type="file" class="form-control" />
-            <span asp-validation-for="Food.Amount" class="offset-4 text-danger"></span>
+            <input asp-for="Food.Image" class="form-control col-8">
+            <span asp-validation-for="Food.Image" class="offset-4 text-danger"></span>
         </div>
         <div class="form-group row mb-5">
             <a asp-controller="Category" class="col-6" asp-action="Index">Edit categories</a>

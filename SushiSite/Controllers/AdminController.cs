@@ -35,19 +35,6 @@ namespace SushiSite.Controllers
         public IActionResult AddNewFood(FoodViewModel model)
         {
             if(!ModelState.IsValid) return View();
-
-            if (model.Image != null)
-            {
-                byte[] imageData = null;
-                // считываем переданный файл в массив байтов
-                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
-                {
-                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
-                }
-                // установка массива байтов
-                model.Food.Image = imageData;
-            }
-
             _context.Foods.Add(model.Food);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
