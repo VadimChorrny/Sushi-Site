@@ -23,23 +23,27 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <div class="modal-title">Просмотр изображения</div>
                         </div>
-                        <div class="modal-body">
-                            <img class="img-responsive center-block" src="" alt="">
+                        <div class="modal-body" style="display: flex; align-items: center; justify-content: center;">
+                            <img class="img-responsive center-block" src="" alt="" style="max-width: 600px;">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 border">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-3 border">
                 <a href="#" class="thumbnail">
                     <img src="@food.Image" alt="..." width="200px" height="150px">
                 </a>
+                <h4 class="card-header font-weight-bold text-dark">@food.Title</h4>
+                <p class="card-text font-weight-bold text-dark">@food.Description</p>
+                <p class="card-text font-weight-bold text-dark">Weight: <span class="text-danger">@food.Weight</span></p>
+                <p class="card-text font-weight-bold text-dark">Amount: <span class="text-danger">@food.Amount</span></p>
+                <p class="card-text font-weight-bold text-dark">Price: <span class="text-danger">@food.Price</span></p>
             </div>
         }
     }
@@ -53,25 +57,16 @@
 @* Client Validation *@
 @section Scripts {
 <script>
-            $(function () {
-        //при нажатии на ссылку, содержащую Thumbnail
+    $(function () {
         $('a.thumbnail').click(function (e) {
-            //отменить стандартное действие браузера
             e.preventDefault();
-            //присвоить атрибуту scr элемента img модального окна
-            //значение атрибута scr изображения, которое обёрнуто
-            //вокруг элемента a, на который нажал пользователь
             $('#image-modal .modal-body img').attr('src', $(this).find('img').attr('src'));
-            //открыть модальное окно
             $("#image-modal").modal('show');
             console.log("Clicked");
         });
-        //при нажатию на изображение внутри модального окна
-        //закрыть его (модальное окно)
         $('#image-modal .modal-body img').on('click', function () {
             $("#image-modal").modal('hide')
         });
     });
-
 </script>
 }
