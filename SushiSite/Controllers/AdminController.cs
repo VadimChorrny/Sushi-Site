@@ -46,7 +46,7 @@ namespace SushiSite.Controllers
             if (foodToRemove == null) return NotFound();
             _context.Foods.Remove(foodToRemove);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ShowAllFoods));
         }
         public IActionResult EditFood(int? id)
         {
@@ -58,19 +58,21 @@ namespace SushiSite.Controllers
 
             IEnumerable<SelectListItem> categories = _context.Categories.Select(e => new SelectListItem()
             { Text = e.Name, Value = e.Id.ToString() });
-            ViewBag.GanreList = categories;
+            ViewBag.CategoryList = categories;
 
             return View(food);
         }
         [HttpPost]
-        public IActionResult Edit(Food obj)
+        public IActionResult EditFood(Food obj)
         {
             if (!ModelState.IsValid) return View();
 
             _context.Foods.Update(obj);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ShowAllFoods));
         }
+
+        public IActionResult ShowAllFoods() => View(_context.Foods.ToList());
 
     }
 }
