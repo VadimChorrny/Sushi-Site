@@ -1,14 +1,89 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using SushiSite.Data;
+using SushiSite.Models;
+using SushiSite.Models.ViewModel;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace SushiSite.Controllers
 {
     //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
+        ApplicationDbContext _context;
+        public AdminController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
         }
+        public IActionResult AddNewFood()
+        {
+            FoodViewModel viewModel = new FoodViewModel()
+            {
+                Category = _context.Categories.Select(e => new SelectListItem() { Text = e.Name, Value = e.Id.ToString() })
+            };
+
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult AddNewFood(FoodViewModel model)
+        {
+            if(!ModelState.IsValid) return View();
+
+            if (model.Image != null)
+            {
+                byte[] imageData = null;
+                // считываем переданный файл в массив байтов
+                using (var binaryReader = new BinaryReader(model.Image.OpenReadStream()))
+                {
+                    imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                }
+                // установка массива байтов
+                model.Food.Image = imageData;
+            }
+
+            _context.Foods.Add(model.Food);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult DeleteFood(int? id)
+        {
+            if (id == null || id <= 0) return NotFound();
+            var foodToRemove = _context.Foods.Find(id);
+            if (foodToRemove == null) return NotFound();
+            _context.Foods.Remove(foodToRemove);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult EditFood(int? id)
+        {
+            if (id == null || id <= 0) return NotFound();
+
+            var food = _context.Foods.Find(id);
+
+            if (food == null) return NotFound();
+
+            IEnumerable<SelectListItem> categories = _context.Categories.Select(e => new SelectListItem()
+            { Text = e.Name, Value = e.Id.ToString() });
+            ViewBag.GanreList = categories;
+
+            return View(food);
+        }
+        [HttpPost]
+        public IActionResult Edit(Food obj)
+        {
+            if (!ModelState.IsValid) return View();
+
+            _context.Foods.Update(obj);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

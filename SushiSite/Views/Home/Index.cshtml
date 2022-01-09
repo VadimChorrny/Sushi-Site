@@ -12,12 +12,20 @@
             <div class="card border-primary mb-3" style="max-width: 20rem;">
                 @if (food.Category != null)
                 {
-                   <div class="card-header">@food.Category.Name</div>
+                    <div class="card-header">@food.Category.Name</div>
 
                 }
                 <div class="card-body">
-                    <h4 class="card-title">@food.Title</h4>
+                    <h4 class="card-header">@food.Title</h4>
                     <p class="card-text">@food.Description</p>
+                    @if (food.Image != null)
+                    {
+                        <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(food.Image))" />
+                    }
+                    <p class="card-text">@food.Weight</p>
+                    @*<p class="card-text">@food.Category.Name</p>*@
+                    <p class="card-text">@food.Amount</p>
+                    <p class="card-text font-weight-bold">Price: <span class="text-danger">@food.Price</span></p>
                 </div>
             </div>
         }
