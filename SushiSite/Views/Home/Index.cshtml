@@ -53,6 +53,10 @@
                 <p class="card-text font-weight-bold text-dark">@food.Description</p>
                 <p class="card-text font-weight-bold text-dark">Weight: <span class="text-danger">@food.Weight</span></p>
                 <p class="card-text font-weight-bold text-dark">Amount: <span class="text-danger">@food.Amount</span></p>
+                @*@if(food.Category.Name != null)
+                {
+                <p class="card-text font-weight-bold text-dark">Category: <span class="text-danger">@food.Category.Name</span></p>
+                }*@
                 <p class="card-text font-weight-bold text-dark">Price: <span class="text-danger">@food.Price</span></p>
                 @if (SignInManager.IsSignedIn(User))
                 {
