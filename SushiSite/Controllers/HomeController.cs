@@ -18,9 +18,15 @@ namespace SushiSite.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            return View(_context.Foods.ToList());
+            var foods = from e in _context.Foods
+                         select e;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                foods = foods.Where(s => s.Title!.Contains(searchString));
+            }
+            return View(foods.ToList());
         }
 
         public IActionResult Privacy()
