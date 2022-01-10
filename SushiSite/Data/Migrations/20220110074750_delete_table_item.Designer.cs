@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SushiSite.Data;
 
 namespace SushiSite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220110074750_delete_table_item")]
+    partial class delete_table_item
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,44 +273,6 @@ namespace SushiSite.Data.Migrations
                     b.ToTable("Foods");
                 });
 
-            modelBuilder.Entity("SushiSite.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("CashSettlement")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("FoodId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("NonCashCalculation")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FoodId");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("SushiSite.Models.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -375,13 +339,6 @@ namespace SushiSite.Data.Migrations
                     b.HasOne("SushiSite.Models.Category", "Category")
                         .WithMany("Foods")
                         .HasForeignKey("CategoryId");
-                });
-
-            modelBuilder.Entity("SushiSite.Models.Order", b =>
-                {
-                    b.HasOne("SushiSite.Models.Food", "Food")
-                        .WithMany()
-                        .HasForeignKey("FoodId");
                 });
 #pragma warning restore 612, 618
         }
