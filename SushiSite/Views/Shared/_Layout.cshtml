@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <style>
-        body{
+        body {
             background-color: #BFC9CA;
         }
     </style>
 </head>
 <body>
-    <header>
+    <header style="margin-bottom: 100px;">
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center">
@@ -55,58 +55,29 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
                             </li>
                         }
-
                     </ul>
-
-                    <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fab fa-twitter"></i><span class="d-lg-none ml-3">Twitter</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fab fa-facebook"></i><span class="d-lg-none ml-3">Facebook</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fab fa-instagram"></i><span class="d-lg-none ml-3">Instagram</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fab fa-linkedin"></i><span class="d-lg-none ml-3">Linkedin</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <form asp-controller="Home" asp-action="Index" class="d-flex" >
-                        <input class="form-control me-sm-2" type="text" name="SearchString" placeholder="Наприклад: ролли ...">
-                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Пошук</button>
-                    </form>
-                    <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
-                        @if (SignInManager.IsSignedIn(User))
-                        {
+                    <ul class="navbar-nav mr-auto pl-lg-4">
+                            @if (SignInManager.IsSignedIn(User))
+                            {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Моє</a>
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Мій акаунт</a>
                             </li>
-
                             <li class="nav-item">
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                                     <button type="submit" class="nav-link btn btn-link text-dark">Вихід</button>
                                 </form>
                             </li>
-                        }
-                        else
-                        {
+                            }
+                            else
+                            {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Реєстрація</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Логін</a>
                             </li>
-                        }
-                    </ul>
+                            }
+                        </ul>
                 </div>
             </div>
         </nav>

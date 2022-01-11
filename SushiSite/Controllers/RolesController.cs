@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SushiSite.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;

@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20220110183732_Add some changes in context again.cs" />
+    <Compile Remove="Data\Migrations\20220110183732_Add some changes in context again.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220110183902_Add some changes in context agains.cs" />
+    <Compile Remove="Data\Migrations\20220110183902_Add some changes in context agains.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220111052455_pls work.cs" />
+    <Compile Remove="Data\Migrations\20220111052455_pls work.Designer.cs" />
+    <Compile Remove="Data\Migrations\20220111052839_i belive that you can work.cs" />
+    <Compile Remove="Data\Migrations\20220111052839_i belive that you can work.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
