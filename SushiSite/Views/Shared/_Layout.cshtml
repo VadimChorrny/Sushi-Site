@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <style>
         body {
-            background-color: #BFC9CA;
+            background-color: #D5DBDB;
         }
     </style>
 </head>
@@ -30,7 +30,7 @@
                     </g>
                     </g>
                     </svg>
-                    <span class="ml-3 font-weight-bold">Sushi</span>
+                    <span class="ml-3 font-weight-bold">Yoshi Sushi</span>
                 </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,7 +49,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Контакти</a>
                         </li>
-                        @if (SignInManager.IsSignedIn(User))
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
