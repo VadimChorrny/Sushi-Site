@@ -20,17 +20,13 @@ namespace SushiSite.Controllers
         }
         public IActionResult AddOrder()
         {
-            OrderViewModel viewModel = new OrderViewModel()
-            { 
-                Foods = _context.Foods.Select(e => new SelectListItem() { Text = e.Title, Value = e.Id.ToString() })
-            };
-            return View(viewModel);
+            return View();
         }
         [HttpPost]
-        public IActionResult AddOrder(OrderViewModel model)
+        public IActionResult AddOrder(Order newOrder)
         {
             if (!ModelState.IsValid) return View();
-            _context.Orders.Add(model.Order);
+            _context.Orders.Add(newOrder);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

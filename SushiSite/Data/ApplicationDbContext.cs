@@ -12,7 +12,7 @@ namespace SushiSite.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+          //  Database.EnsureCreated();
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Food> Foods { get; set; }
