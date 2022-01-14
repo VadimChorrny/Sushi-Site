@@ -9,7 +9,7 @@ namespace SushiSite.Models.ViewModel
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Год рождения")]
+        [Display(Name = "Рік народження")]
         public int Year { get; set; }
 
         [Required]
@@ -18,9 +18,9 @@ namespace SushiSite.Models.ViewModel
         public string Password { get; set; }
 
         [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        [Compare("Password", ErrorMessage = "Пароли не співпадають")]
         [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
+        [Display(Name = "Підтвердіть пароль пароль")]
         public string PasswordConfirm { get; set; }
     }
 }

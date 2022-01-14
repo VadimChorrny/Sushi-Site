@@ -2,7 +2,7 @@
 
 namespace SushiSite.Migrations
 {
-    public partial class workwithorders : Migration
+    public partial class plswork : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
