@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SushiSite.Models.Order>
 
 <div style="margin-top: 100px;">
-    <h1 class="mb-5">Your orders</h1>
+    <h1 class="mb-5">Ваші замовлення</h1>
     <div style="display: flex; flex-direction: row; gap: 30px;">
         @if (Model.Any())
         {
@@ -9,13 +9,13 @@
             {
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">@order.Name</h5>
-                        <h5 class="card-title">@order.Surname</h5>
-                        <h5 class="card-title">@order.LastName</h5>
-                        <h5 class="card-title">@order.Phone</h5>
-                        <h5 class="card-title">@order.Address</h5>
-                        <h5 class="card-title">@order.CashSettlement</h5>
-                        <h5 class="card-title">@order.NonCashCalculation</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Ім'я:</span> @order.Name</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Фамілія:</span> @order.Surname</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">По Батькові:</span> @order.LastName</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Телефон:</span> @order.Phone</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Адреса:</span> @order.Address</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Оплата карткою:</span> @order.CashSettlement</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Оплата готівкою:</span> @order.NonCashCalculation</h5>
                     </div>
                     <div class="btn-group">
                         <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-danger">Delete</a>
