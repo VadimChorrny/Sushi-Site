@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SushiSite.Data;
 using SushiSite.Models;
 using SushiSite.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,9 +19,16 @@ namespace SushiSite.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            return View();
+            var orders = from e in _context.Orders
+                        select e;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                orders = orders.Where(s => s.Surname!.Contains(searchString));
+            }
+            return View(orders);
         }
         public IActionResult AddNewFood()
         {
@@ -73,6 +81,7 @@ namespace SushiSite.Controllers
         }
 
         public IActionResult ShowAllFoods() => View(_context.Foods.ToList());
+        public IActionResult ShowAllOrders() => View(_context.Orders.ToList());
 
     }
 }

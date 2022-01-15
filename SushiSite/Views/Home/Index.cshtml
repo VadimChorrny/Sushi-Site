@@ -7,9 +7,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div style="margin-top: 100px;  display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; ">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 20px; ">
     @if (Model.Any())
     {
+
         @foreach (var food in Model)
         {
             <partial name="_SushiCartPartial" model="@food"/>

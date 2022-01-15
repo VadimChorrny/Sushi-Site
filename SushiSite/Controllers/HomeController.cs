@@ -20,7 +20,7 @@ namespace SushiSite.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string searchString,string? category)
+        public IActionResult Index(string searchString)
         {
             var foods = from e in _context.Foods
                          select e;
@@ -41,6 +41,7 @@ namespace SushiSite.Controllers
         {
             return View();
         }
+        public IActionResult AboutCreator() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
