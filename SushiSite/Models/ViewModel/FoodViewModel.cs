@@ -8,6 +8,5 @@ namespace SushiSite.Models.ViewModel
     {
         public Food Food { get; set; }
         public IEnumerable<SelectListItem> Category { get; set; }
-        public IFormFile Image { get; set; }
     }
 }
