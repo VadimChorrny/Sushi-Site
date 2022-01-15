@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SushiSite.Data;
 using SushiSite.Models;
 using SushiSite.Models.ViewModel;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SushiSite.Controllers
@@ -16,10 +18,14 @@ namespace SushiSite.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Orders.ToList());
+            return View(_context.Orders.Include(nameof(Order.Food)));
         }
         public IActionResult AddOrder()
         {
+            IEnumerable<SelectListItem> foods = _context.Foods.Select(e => new SelectListItem()
+            { Text = e.Title, Value = e.Id.ToString() });
+            ViewBag.FoodList = foods;
+
             return View();
         }
         [HttpPost]
