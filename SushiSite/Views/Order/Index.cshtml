@@ -12,7 +12,36 @@
 
             @foreach (var order in Model)
             {
+<<<<<<< HEAD
                 <partial name="_OrderCartPartial" model="@order" />
+=======
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="font-weight-bold">Ім'я:</span> @order.Name</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Фамілія:</span> @order.Surname</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">По Батькові:</span> @order.LastName</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Телефон:</span> @order.Phone</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Адреса:</span> @order.Address</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Замовлення:</span>
+                            @if (order.Food != null)
+                            {
+                                @order.Food.Title
+                            }
+                        </h5>
+                        @if (order.NonCashCalculation == true)
+                        {
+                            <h5 class="card-title"><span class="font-weight-bold">Тип оплати:</span> готівкою</h5>
+                        }
+                        @if (order.CashSettlement == true)
+                        {
+                            <h5 class="card-title"><span class="font-weight-bold">Тип оплати:</span> карткою</h5>
+                        }
+                    </div>
+                    <div class="btn-group">
+                        <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+>>>>>>> master
             }
         }
         else
