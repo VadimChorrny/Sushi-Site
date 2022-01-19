@@ -1,6 +1,10 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using SushiSite.Helpers
+@using SushiSite.Models
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +50,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">
                                     Замовлення
+                                    @{
+                                        var list = HttpContextAccessor.HttpContext.Session
+                                        .GetObject<IEnumerable<ShoppingOrder>>("ShoppingOrders");
+                                        var count = list != null ? list.Count() : 0;
+                                    }
+                                    (@count)
                                 </a>
                             </li>
                         }
@@ -59,7 +69,7 @@
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Адмін</a>
                             </li>
                         }
 

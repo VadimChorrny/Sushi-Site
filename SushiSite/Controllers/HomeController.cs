@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using SushiSite.Data;
+using SushiSite.Helpers;
 using SushiSite.Models;
 using SushiSite.Models.ViewModel;
 using System;
@@ -31,6 +32,23 @@ namespace SushiSite.Controllers
             }
             
             return View(foods);
+        }
+
+        public IActionResult FoodDetails(int id)
+        {
+            Food food = _context.Foods.Find(id);
+            if (food == null) return NotFound();
+
+            _context.Entry(food).Reference(nameof(Food.Category)).Load();
+
+            bool isAddedToCart = false;
+            List<ShoppingOrder> products = HttpContext.Session.GetObject<List<ShoppingOrder>>("ShoppingOrders");
+            if (products != null)
+            {
+                if (products.FirstOrDefault(i => i.FoodId == id) != null)
+                    isAddedToCart = true;
+            }
+            return View(new FoodDetailsViewModel() { Food = food, IsAddedToCart = isAddedToCart });
         }
 
         public IActionResult Privacy()

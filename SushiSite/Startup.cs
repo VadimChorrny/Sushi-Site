@@ -35,6 +35,19 @@ namespace SushiSite
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddAuthentication()
+               .AddGoogle(options =>
+               {
+                   options.ClientId = "888351585556-786ubtjp14eor0orllhqriuhs6s0h61n.apps.googleusercontent.com";
+                   options.ClientSecret = "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";
+               });
+            services.AddHttpContextAccessor();
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddRazorPages();
             services.AddSession();
 
@@ -61,6 +74,8 @@ namespace SushiSite
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

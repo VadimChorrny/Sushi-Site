@@ -32,7 +32,7 @@
         @if (SignInManager.IsSignedIn(User))
         {
             <div class="btn-group">
-                <a asp-controller="Order" asp-action="AddOrder" asp-route-id="@Model.Id" class="btn btn-success" style="width: 245px;">Купити</a>
+                <a asp-controller="Order" asp-action="AddOrder" asp-route-id="@Model.Id" class="btn btn-success" style="width: 245px;">Додати в кошик</a>
             </div>
         }
  </div>
