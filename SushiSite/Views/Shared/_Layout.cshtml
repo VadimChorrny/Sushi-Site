@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
     <style>
         body {
             background-color: #D5DBDB;
@@ -48,11 +49,11 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Index">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
                                     Замовлення
                                     @{
                                         var list = HttpContextAccessor.HttpContext.Session
-                                        .GetObject<IEnumerable<ShoppingOrder>>("ShoppingOrders");
+                                        .GetObject<IEnumerable<Order>>("ShoppingOrders");
                                         var count = list != null ? list.Count() : 0;
                                     }
                                     (@count)

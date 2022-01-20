@@ -42,7 +42,7 @@ namespace SushiSite.Controllers
             _context.Entry(food).Reference(nameof(Food.Category)).Load();
 
             bool isAddedToCart = false;
-            List<ShoppingOrder> products = HttpContext.Session.GetObject<List<ShoppingOrder>>("ShoppingOrders");
+            List<Order> products = HttpContext.Session.GetObject<List<Order>>("ShoppingOrders");
             if (products != null)
             {
                 if (products.FirstOrDefault(i => i.FoodId == id) != null)
@@ -50,6 +50,33 @@ namespace SushiSite.Controllers
             }
             return View(new FoodDetailsViewModel() { Food = food, IsAddedToCart = isAddedToCart });
         }
+
+        public IActionResult AddToCart(int id)
+        {
+            List<Order> products = HttpContext.Session.GetObject<List<Order>>("ShoppingOrders");
+            if (products == null)
+            {
+                products = new List<Order>();
+            }
+
+            products.Add(new Order() { FoodId = id, Name = "Some data" });
+            HttpContext.Session.SetObject("ShoppingOrders", products);
+
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<Order> products = HttpContext.Session.GetObject<List<Order>>("ShoppingOrders");
+            if (products != null)
+            {
+                products.Remove(products.FirstOrDefault(i => i.FoodId == id));
+            }
+
+            HttpContext.Session.SetObject("ShoppingOrders", products);
+            
+            return RedirectToAction(nameof(Index));
+        }
+
 
         public IActionResult Privacy()
         {

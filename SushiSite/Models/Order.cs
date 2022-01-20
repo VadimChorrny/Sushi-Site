@@ -17,7 +17,8 @@ namespace SushiSite.Models
         public string Phone { get; set; }
         public bool CashSettlement { get; set; } = false;
         public bool NonCashCalculation { get; set; } = true;
-        public int? FoodId { get; set; }
+        public int FoodId { get; set; }
         public Food Food { get; set; }
+        public bool IsAddedToCart { get; set; }
     }
 }
