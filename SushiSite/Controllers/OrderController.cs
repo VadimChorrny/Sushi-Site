@@ -34,7 +34,7 @@ namespace SushiSite.Controllers
             if (!ModelState.IsValid) return View();
             _context.Orders.Add(newOrder);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return RedirectToRoute(new { controller = "Home", action = "Index" });
         }
         public IActionResult Delete(int? id)
         {

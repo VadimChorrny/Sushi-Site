@@ -14,7 +14,7 @@
         </ul>
 
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a asp-action="Confirm" class="btn btn-primary">Confirm Order</a>
+        <a asp-controller="Order" asp-action="AddOrder" class="btn btn-primary">Confirm Order</a>
     </div>
     <div class="card-footer text-muted">
         Items: @Model.Foods.Count()
