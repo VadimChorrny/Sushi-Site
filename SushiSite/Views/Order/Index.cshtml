@@ -5,60 +5,48 @@
 
 <div>
     <h1 class="mb-5">Ваші замовлення</h1>
-    <form asp-controller="Order" asp-action="Index" class="d-flex mb-5" style="width: 200px;">
-        <input class="form-control me-sm-2" type="text" name="SearchString" placeholder="Ролли ...">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Пошук</button>
-    </form>
     <div style="display: flex; flex-direction: row; gap: 30px; flex-wrap: wrap;">
-        @if (SignInManager.IsSignedIn(User))
+        @if (Model.Any())
         {
-            @if (Model.Any())
+            @foreach (var order in Model)
             {
-
-                @foreach (var order in Model)
-                {
-                    <partial name="_OrderCartPartial" model="@order" />
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title"><span class="font-weight-bold">Ім'я:</span> @order.Name</h5>
-                            <h5 class="card-title"><span class="font-weight-bold">Фамілія:</span> @order.Surname</h5>
-                            <h5 class="card-title"><span class="font-weight-bold">По Батькові:</span> @order.LastName</h5>
-                            <h5 class="card-title"><span class="font-weight-bold">Телефон:</span> @order.Phone</h5>
-                            <h5 class="card-title"><span class="font-weight-bold">Адреса:</span> @order.Address</h5>
-                            <h5 class="card-title">
-                                <span class="font-weight-bold">Замовлення:</span>
-                                @if (order.Food != null)
-                                {
-                                    @order.Food.Title
-                                }
-                            </h5>
-                            @if (order.NonCashCalculation == true)
+                <partial name="_OrderCartPartial" model="@order" />
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="font-weight-bold">Ім'я:</span> @order.Name</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Фамілія:</span> @order.Surname</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">По Батькові:</span> @order.LastName</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Телефон:</span> @order.Phone</h5>
+                        <h5 class="card-title"><span class="font-weight-bold">Адреса:</span> @order.Address</h5>
+                        <h5 class="card-title">
+                            <span class="font-weight-bold">Замовлення:</span>
+                            @if (order.Food != null)
                             {
-                                <h5 class="card-title"><span class="font-weight-bold">Тип оплати:</span> готівкою</h5>
+                                @order.Food.Title
                             }
-                            @if (order.CashSettlement == true)
-                            {
-                                <h5 class="card-title"><span class="font-weight-bold">Тип оплати:</span> карткою</h5>
-                            }
-                        </div>
-                        @if(User.IsInRole("admin"))
+                        </h5>
+                        @if (order.NonCashCalculation == true)
                         {
-                         <div class="btn-group">
-                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-danger">Delete</a>
-                        </div>
+                            <h5 class="card-title"><span class="font-weight-bold">Тип оплати:</span> готівкою</h5>
+                        }
+                        @if (order.CashSettlement == true)
+                        {
+                            <h5 class="card-title"><span class="font-weight-bold">Тип оплати:</span> карткою</h5>
                         }
                     </div>
-                }
-            }
-            else
-            {
-                <h1>List is empty!</h1>
-                <img src="https://www.meme-arsenal.com/memes/d83a503e602d59c87c5376e87e32964c.jpg" />
+                    @if (User.IsInRole("admin"))
+                    {
+                        <div class="btn-group">
+                            <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.OrderId" class="btn btn-danger">Delete</a>
+                        </div>
+                    }
+                </div>
             }
         }
         else
         {
-
+            <h1>List is empty!</h1>
+            <img src="https://www.meme-arsenal.com/memes/d83a503e602d59c87c5376e87e32964c.jpg" />
         }
     </div>
 </div>

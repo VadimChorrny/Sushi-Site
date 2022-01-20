@@ -3,16 +3,15 @@
 *@
 @{
 }
-<div>
-    <h1 style="margin-top: 100px;">Some admin data</h1>
-    <div class="mb-2 text-left">
-        <a asp-controller="Admin" asp-action="AddNewFood" class="btn btn-primary">Create New Food</a>
-        <a asp-controller="Admin" asp-action="ShowAllFoods" class="btn btn-primary">Show All Food</a>
-        <a asp-controller="Admin" asp-action="ShowAllOrders" class="btn btn-primary">Show All Order</a>
-        <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create New Category</a>
-        <a asp-area="" asp-controller="Category" asp-action="Index" class="btn btn-primary">Categories list</a>
-        <a asp-area="" asp-controller="Order" asp-action="Index" class="btn btn-primary">Orders</a>
-        <a asp-area="" asp-controller="Roles" asp-action="Index" class="btn btn-primary">Roles</a>
+<div style="display:flex; flex-direction: column;">
+    <h1 class="mb-5">Меню адміністратора сайту</h1>
+    <div class="mb-2 text-left" style="display:flex; flex-direction: column;">
+        <a asp-controller="Admin" asp-action="AddNewFood" class="btn btn-primary mb-3">Додати новий продукт</a>
+        <a asp-controller="Admin" asp-action="ShowAllFoods" class="btn btn-primary mb-3">Список продуктів</a>
+        <a asp-controller="Admin" asp-action="ShowAllOrders" class="btn btn-primary mb-3">Список замовлень</a>
+        <a asp-controller="Category" asp-action="Create" class="btn btn-primary mb-3">Створити нову категорію</a>
+        <a asp-area="" asp-controller="Category" asp-action="Index" class="btn btn-primary mb-3">Список наявних категорій</a>
+        <a asp-area="" asp-controller="Roles" asp-action="Index" class="btn btn-primary mb-3">Керування ролями</a>
     </div>
 </div>
 

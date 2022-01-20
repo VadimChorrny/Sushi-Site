@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SushiSite.Data;
@@ -9,6 +10,7 @@ using System.Linq;
 
 namespace SushiSite.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         ApplicationDbContext _context;
@@ -45,10 +47,5 @@ namespace SushiSite.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index)); // back to Index 
         }
-        //public IActionResult ShowOrder(int? id)
-        //{
-        //    if (id == null || id <= 0) return NotFound();
-        //    return View();
-        //}
     }
 }

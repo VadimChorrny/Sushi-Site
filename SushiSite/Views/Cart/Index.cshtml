@@ -2,21 +2,26 @@
 
 <div class="card text-center">
     <div class="card-header">
-        Product List to Order
+        Вибрані продукти для замовлення
     </div>
     <div class="card-body">
 
         <ul class="list-group mb-2">
-            @foreach (var car in Model.Foods)
+            @if(Model.Foods.Any())
             {
-                <li class="list-group-item">@car.Title @car.Price$</li>
+                @foreach (var car in Model.Foods)
+                {
+                    <li class="list-group-item mb-3" style="background-color: #E5E7E9">@car.Title @car.Price гривень</li>
+                }
+            }
+            else
+            {
+                <h1>Ви не додали нічого до кошику.</h1>
             }
         </ul>
-
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a asp-controller="Order" asp-action="AddOrder" class="btn btn-primary">Confirm Order</a>
+        <a asp-controller="Order" asp-action="AddOrder" class="btn btn-primary">Підтвердити замовлення</a>
     </div>
     <div class="card-footer text-muted">
-        Items: @Model.Foods.Count()
+        Кількість доданих продуктів: @Model.Foods.Count()
     </div>
 </div>
