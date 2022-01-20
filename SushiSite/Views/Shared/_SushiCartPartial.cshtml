@@ -20,11 +20,11 @@
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-3 border" style="background-color: #E5E7E9; min-width: 250px">
+<div class="col-xs-12 col-sm-12 col-md-8 col-lg-2 p-3 border" style="background-color: #E5E7E9; min-width:250px">
     <a href="#" class="thumbnail">
-        <img src="@Model.Image" alt="..." style="width: 200px; height: 150px;">
+        <img src="@Model.Image" alt="..." style="width: 214px; height: 150px;">
     </a>
-    <h4 class="card-header font-weight-bold text-dark" style="font-size: 20px">@Model.Title</h4>
+    <h4 class="card-header font-weight-bold text-dark" style="font-size: 16.5px">@Model.Title</h4>
     <p class="card-text font-weight-bold text-dark">Вага: <span class="text-danger">@Model.Weight</span></p>
     <p class="card-text font-weight-bold text-dark">Кількість: <span class="text-danger">@Model.Amount</span></p>
 
@@ -32,7 +32,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <div class="btn-group">
-            <a asp-controller="Home" asp-action="FoodDetails" asp-route-id="@Model.Id" class="btn btn-success" style="width: 245px;">Додати в кошик</a>
+            <a asp-controller="Home" asp-action="FoodDetails" asp-route-id="@Model.Id" class="btn btn-success" style="width: 215px;">Додати в кошик</a>
         </div>
     }
 </div>
