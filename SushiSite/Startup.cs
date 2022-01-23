@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SushiSite.Data;
+using SushiSite.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +43,7 @@ namespace SushiSite
                    options.ClientId = "888351585556-786ubtjp14eor0orllhqriuhs6s0h61n.apps.googleusercontent.com";
                    options.ClientSecret = "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";
                });
+            services.AddTransient<IEmailSender, EmailService>();
             services.AddHttpContextAccessor();
             services.AddSession(options =>
             {
@@ -56,6 +59,7 @@ namespace SushiSite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            env.EnvironmentName = "Development";
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

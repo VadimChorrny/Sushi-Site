@@ -24,15 +24,16 @@ namespace SushiSite.Controllers
         }
         public IActionResult AddOrder()
         {
+
             IEnumerable<SelectListItem> foods = _context.Foods.Select(e => new SelectListItem()
             { Text = e.Title, Value = e.Id.ToString() });
             ViewBag.FoodList = foods;
-
             return View();
         }
         [HttpPost]
         public IActionResult AddOrder(Order newOrder)
         {
+            HttpContext.Session.Clear();
             if (!ModelState.IsValid) return View();
             _context.Orders.Add(newOrder);
             _context.SaveChanges();

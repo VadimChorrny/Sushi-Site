@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SushiSite.Data;
+using SushiSite.Helpers;
 using SushiSite.Models;
 using SushiSite.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SushiSite.Controllers
 {
@@ -78,6 +80,12 @@ namespace SushiSite.Controllers
             _context.Foods.Update(obj);
             _context.SaveChanges();
             return RedirectToAction(nameof(ShowAllFoods));
+        }
+        public async Task<IActionResult> SendMessage()
+        {
+            EmailService emailService = new EmailService();
+            await emailService.SendEmailAsync("chorrny228@gmail.com", "Тема письма", "Тест письма: тест!");
+            return RedirectToAction("Index");
         }
 
         public IActionResult ShowAllFoods() => View(_context.Foods.ToList());
